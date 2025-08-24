@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "ActiveTabPermission",
+  "version": "1.0.0",
+  "description": "",
+  "host_permissions": [],
+  "permissions": ["activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": []
+}

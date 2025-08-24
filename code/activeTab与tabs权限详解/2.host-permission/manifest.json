@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "HostPermission",
+  "version": "1.0.0",
+  "description": "",
+  "host_permissions": ["*://*.bing.com/*"],
+  "permissions": [],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": []
+}
