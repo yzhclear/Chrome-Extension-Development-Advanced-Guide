@@ -56,12 +56,15 @@
 "permissions": [],
 ```
 
-结果：查询到所有 tab，**皆无 url 等字段数据**
+**结果**   
+
+查询到所有 tab，**皆无 url 等字段数据**
 
 ### 2.仅有 Bing 的主机权限**
    ![Host Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-2.png)
 
-**配置**
+**配置**   
+
 无tabs、activeTab权限，申请baidu页面的主机权限
 ```json
 "host_permissions": [
@@ -70,7 +73,9 @@
 "permissions": [],
 ```
 
-结果：依然能查询到所有标签页，但只有 Bing 页面返回了完整的url等敏感字段数据，其余页面信息依然受限。
+**结果**    
+
+依然能查询到所有标签页，但只有 Bing 页面返回了完整的url等敏感字段数据，其余页面信息依然受限。
 
 ### 3.仅有 tabs 权限
    ![Tabs Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-3.png)
@@ -82,20 +87,23 @@
 "permissions": ["tabs"],
 ```
 
-结果：所有标签页均能返回完整的url等敏感字段数据。
+**结果**   
 
-### 4.仅有 activeTab 权限，在控制台查询 tab 信息
+所有标签页均能返回完整的url等敏感字段数据。
+
+### 4.仅有 activeTab 权限
    ![ActiveTab Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-4.png)
-   结论：
 
-**配置**
+**配置**   
+
 申请activeTab权限
 ```json
 "host_permissions": [],
 "permissions": ["activeTab"],
 ```
 
-结果：
+**结果**   
+
 1. 初始状态下：查询所有标签页，均无敏感字段。
 2. 当用户点击Google页面的 action 图标 后：该页面的 tab 即刻解锁，返回完整的 url 等字段数据。
 3. 其余未被用户触发的页面依旧保持受限状态。
