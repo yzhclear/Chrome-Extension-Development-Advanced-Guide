@@ -18,7 +18,7 @@
 - 重新加载一个标签页
 - 导航到新的 URL
 
-那么，`tabs` 权限真正的作用是什么呢？它的核心价值在于：**允许扩展在查询标签页时获取敏感参数**，包括 `url`、`pendingUrl`、`title` 和 `favIconUrl`。换句话说，它实际上提供了扩展对**所有标签页**的访问能力，一旦申请，就能看到浏览器中每个页面的核心信息，这也是为什么它在权限体系中被认为是敏感权限。
+那么，`tabs` 权限真正的作用是什么呢？它的核心价值在于：**允许扩展在查询标签页时获取敏感字段数据**，包括 `url`、`pendingUrl`、`title` 和 `favIconUrl`。换句话说，它实际上提供了扩展对**所有标签页**的访问能力，一旦申请，就能看到浏览器中每个页面的核心信息，这也是为什么它在权限体系中被认为是敏感权限。
 
 ### **host_permissions 主机权限**
 
@@ -45,58 +45,59 @@
 
 理论讲解之后，我们再通过几个实际的权限配置场景来验证差异。下面的实验均通过在扩展的控制台中调用 chrome.tabs.query({}) 来观察返回结果。
 
-1. **无任何权限**
+### 1.无任何权限
    ![No Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-1.png)
 
 **配置**
 
+无tabs、activeTab权限，也未申请任何主机权限
 ```json
-// 无tabs、activeTab权限，也未申请任何主机权限
 "host_permissions": [],
 "permissions": [],
 ```
 
-结果：查询到所有 tab，**皆无 url 等参数**
+结果：查询到所有 tab，**皆无 url 等字段数据**
 
-2. **仅有 Bing 的主机权限**
+### 2.仅有 Bing 的主机权限**
    ![Host Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-2.png)
 
 **配置**
-
+无tabs、activeTab权限，申请baidu页面的主机权限
 ```json
-// 无tabs、activeTab权限，申请baidu页面的主机权限
 "host_permissions": [
     "*://*.bing.com/*"
   ],
 "permissions": [],
 ```
 
-结果：依然能查询到所有标签页，但只有 Bing 页面返回了完整的敏感参数，其余页面信息依然受限。
+结果：依然能查询到所有标签页，但只有 Bing 页面返回了完整的url等敏感字段数据，其余页面信息依然受限。
 
-3. **仅有 tabs 权限，在控制台查询 tab 信息**
+### 3.仅有 tabs 权限
    ![Tabs Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-3.png)
 
+**配置**
+无tabs、activeTab权限，申请baidu页面的主机权限
 ```json
-// 无tabs、activeTab权限，申请baidu页面的主机权限
 "host_permissions": [],
 "permissions": ["tabs"],
 ```
 
-结果：所有标签页均能返回完整的url等敏感字段。
+结果：所有标签页均能返回完整的url等敏感字段数据。
 
-4. **仅有 activeTab 权限，在控制台查询 tab 信息**
+### 4.仅有 activeTab 权限，在控制台查询 tab 信息
    ![ActiveTab Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-4.png)
    结论：
 
+**配置**
+申请activeTab权限
 ```json
-// 申请activeTab权限
 "host_permissions": [],
 "permissions": ["activeTab"],
 ```
 
 结果：
 1. 初始状态下：查询所有标签页，均无敏感字段。
-2. 当用户点击Google页面的 action 图标 后：该页面的 tab 即刻解锁，返回完整的 url 等参数。
+2. 当用户点击Google页面的 action 图标 后：该页面的 tab 即刻解锁，返回完整的 url 等字段数据。
 3. 其余未被用户触发的页面依旧保持受限状态。
 
 ## 结论
