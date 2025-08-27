@@ -43,12 +43,12 @@
 
 ## 代码示例
 
-理论讲解之后，我们再通过几个实际的权限配置场景来验证差异。实验环境是在 Chrome 浏览器中同时打开两个标签页（Bing 与 Google），然后在扩展的控制台里调用 chrome.tabs.query({})，观察返回的结果。
+理论讲解之后，我们再通过几个实际的权限配置场景来验证差异。实验环境是在 Chrome 浏览器中同时打开两个标签页（Bing 与 Google），然后在扩展的控制台里调用 `chrome.tabs.query({})`，观察返回的结果。
 
 ### 1.无任何权限
 **配置**
 
-无 tabs、activeTab 权限，也未申请任何主机权限
+无 `tabs`、`activeTab` 权限，也未申请任何主机权限
 ```json
 "host_permissions": [],
 "permissions": [],
@@ -64,7 +64,7 @@
 
 **配置**   
 
-无 tabs、activeTab 权限，申请 Bing 页面的主机权限
+无 `tabs`、`activeTab` 权限，申请 Bing 页面的主机权限
 ```json
 "host_permissions": [
     "*://*.bing.com/*"
@@ -76,13 +76,13 @@
 
  ![Host Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-2.png)
 
-依然能查询到所有标签页，但只有 Bing 页面返回了完整的url等敏感字段数据，其余页面信息依然受限。
+依然能查询到所有标签页，但只有 Bing 页面返回了完整的 url 等敏感字段数据，其余页面信息依然受限。
 
 ### 3.仅有 tabs 权限
 
 **配置**   
 
-申请 tabs 权限
+仅申请 `tabs` 权限
 ```json
 "host_permissions": [],
 "permissions": ["tabs"],
@@ -93,12 +93,12 @@
    ![Tabs Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-3.png)
 
 
-所有标签页均能返回完整的url等敏感字段数据。
+所有标签页均能返回完整的 url 等敏感字段数据。
 
 ### 4.仅有 activeTab 权限
 **配置**   
 
-申请 activeTab 权限
+仅申请 `activeTab` 权限
 ```json
 "host_permissions": [],
 "permissions": ["activeTab"],
