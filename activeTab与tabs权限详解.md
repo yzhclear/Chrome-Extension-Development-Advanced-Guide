@@ -60,7 +60,7 @@
 
 查询到所有 tab，**皆无 url 等字段数据**
 
-### 2.仅有 Bing 的主机权限**
+### 2.仅有 Bing 的主机权限
    ![Host Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-2.png)
 
 **配置**   
