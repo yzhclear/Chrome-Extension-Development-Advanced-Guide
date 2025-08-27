@@ -76,7 +76,7 @@
 
  ![Host Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-2.png)
 
-依然能查询到所有标签页，但只有 Bing 页面返回了完整的 url 等敏感字段数据，其余页面信息依然受限。
+依然能查询到所有标签页，**但只有 Bing 页面返回了完整的 url 等敏感字段数据，其余页面信息依然受限。**
 
 ### 3.仅有 tabs 权限
 
@@ -93,7 +93,7 @@
    ![Tabs Permission](https://storage.yzhclear.com/blog/tab-vs-activetab-3.png)
 
 
-所有标签页均能返回完整的 url 等敏感字段数据。
+**所有标签页均能返回完整的 url 等敏感字段数据。**
 
 ### 4.仅有 activeTab 权限
 **配置**   
@@ -116,8 +116,8 @@
 ## 结论
 
 - **`tabs`** → 全局级别：访问所有标签页的敏感信息
-- **`host_permissions`** → 精细化级别：只访问指定网站的标签页信息
-- **`activeTab`** → 临时级别：只在用户触发时访问当前活动标签页
+- **`host_permissions`** → 精细化级别：只访问指定网站的标签页的敏感信息
+- **`activeTab`** → 临时级别：只在用户触发时访问当前活动标签页的敏感信息
 
 实际使用场景：
 
